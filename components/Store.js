@@ -15,6 +15,7 @@ export default class Store extends Component {
 
   constructor(props) {
     super(props);
+  }
 
   addProductToCart = () => {
     Alert.alert('Success', 'The product has been added to your cart')
@@ -51,7 +52,7 @@ export default class Store extends Component {
                     </View>
                   </View>
 
-                  <Image style={styles.cardImage} source={wine}/>
+                  <Image style={styles.cardImage} resizeMode="contain" source={wine}/>
                   
                   <View style={styles.cardFooter}>
                     <View style={styles.socialBarContainer}>

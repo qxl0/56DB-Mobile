@@ -11,46 +11,41 @@ const client= new ApolloClient({
   uri: 'http://192.168.1.48:4000/graphql'
 });
 
-const getQuery = () => {
-  const desc = "abb";
-  return
-  `
-    query {
-          queryitems(desc: "abb"}){
-            ID,
-            Description,
-            Price
-          }
-        }
-    `
-};
 
 export default function App() {
-
   const [state, setState] = useState({query: null});
+  const getQuery = () => {
+    const desc = "alm";
+    return `
+      query {
+        queryitems(desc:"${desc}"){ 
+          ID,
+          Description,
+          Price
+        }
+      } 
+  ` 
+  };
 
   useEffect(() => {
-    console.log("useEffect:", state.query);
     const query = getQuery();
     setState({query});
   }, [ state.query] );
 
-  if (state.query === null) {
+  if (!state || !state.query ) {
     console.log("state.query === null");
     return <View style={styles.loading}></View>  
   }
 
-  console.log("state.query !== null", state.query);
+  console.log("state.query !== null", state);
   return (
-
     <ApolloProvider client={client}>
-      {/* <Query query={gql `${state.query}` }> */}
-      <Query query={
-            gql `query { queryitems(desc: "abb") { ID, Description,Price}}` } >
+      <Query query={gql `${state.query}` }>
         {({ loading, error, data }) => {
-          if (loading || error) return <ActivityIndicator size="large" color="#0000ff" />
+          if (loading || error) 
+            return <ActivityIndicator style={styles.loading} size="large" color="#0000ff" />
           const items = data.queryitems;
-          console.log("items: ", items);
+          {/* console.log("items: ", items); */}
           const items2 = items.map(item => 
             { return {...item, Price: `$ ${item.Price} USD`}} );
           return (
