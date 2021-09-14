@@ -1,9 +1,17 @@
 import React from 'react'
-import { View , StyleSheet} from 'react-native'
+import { Button, View , Text, StyleSheet} from 'react-native'
 import ProductListScreen from './screens/ProductListScreen'
 import TestScreen from './screens/TestScreen'
 import  ApolloClient  from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import  DetailsScreen  from './screens/DetailsScreen';
+import  HomeScreen from './screens/HomeScreen';
+
+
+
+const Stack = createNativeStackNavigator();
 
 const client= new ApolloClient({
   uri: 'http://192.168.1.48:4000/graphql'
@@ -13,7 +21,13 @@ const client= new ApolloClient({
 export default function App() {
   return (
     <ApolloProvider client={client}>
-      <ProductListScreen />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Details" component={DetailsScreen} />
+          <Stack.Screen name="ProductList" component={ProductListScreen} />
+        </Stack.Navigator>
+      </NavigationContainer> 
     </ApolloProvider>
   )
 }

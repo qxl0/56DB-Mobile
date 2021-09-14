@@ -1,17 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { Text, StyleSheet, View, ActivityIndicator } from "react-native";
 import Store from "../components/Store";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { AppContext } from "../AppContext";
 import { GetItemsQuery } from "../GraphQL/Queries";
 
-export default ProductListScreen = () => {
+export default ProductListScreen = ({route, navigation}) => {
+  /* 2. Get the param */
+  const { text } = route.params;
   const [state, setState] = useState({ query: null });
   const getQuery = () => {
-    const desc = "alm";
-    return GetItemsQuery(desc);
+    return GetItemsQuery(text);
   };
 
   useEffect(() => {
@@ -41,9 +42,14 @@ export default ProductListScreen = () => {
             />
           );
         const items = data.queryitems;
-        {
-          /* console.log("items: ", items); */
-        }
+        if (items.length === 0) {
+          return (
+            <View style={styles.notfound}>
+              <Text>No items found</Text>
+            </View>
+          )
+        };
+
         const items2 = items.map((item) => {
           return { ...item, Price: `$ ${item.Price} USD` };
         });
@@ -68,6 +74,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   loading: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  notfound: {
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
