@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function SalesScreen({ navigation }) {
   const [mode, setMode] = useState('date');
-  const [startDate, setStartDate] = useState(new Date("12/1/2018"));
+  const [startDate, setStartDate] = useState(new Date("12/01/2018"));
   const [endDate, setEndDate] = useState(new Date("12/31/2018"));
 
   const onStartDateChange = (event, selectedDate) => {
