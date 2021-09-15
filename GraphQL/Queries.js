@@ -9,3 +9,14 @@ export const GetItemsQuery = (desc) => gql`
         }
       } 
 `;
+
+export const GetSalesQuery = (startdate, enddate) => gql`
+  query {
+  sales(startdate: "${startdate}", enddate: "${enddate}"){
+    ID,
+		startdate,
+    enddate,
+    SaleAmount
+  }
+}
+`;

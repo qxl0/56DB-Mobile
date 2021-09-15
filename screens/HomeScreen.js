@@ -14,6 +14,10 @@ function HomeScreen({navigation}) {
         title="Product Details"
         onPress={() => navigation.navigate('Details')}
       />
+      <Button
+        title="Sales Details"
+        onPress={() => navigation.navigate('Sales')}
+      />
     </ImageBackground>
   );
 }
