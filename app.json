@@ -2,9 +2,9 @@
   "expo": {
     "name": "56DB-Mobile",
     "slug": "56DB-Mobile",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/56dbmobile.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,7 +17,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.qianglipa.56DB-Mobile",
+      "buildNumber": "1.0.2"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +29,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

@@ -20,3 +20,26 @@ export const GetSalesQuery = (startdate, enddate) => gql`
   }
 }
 `;
+
+export const GetAllItemsQuery = () => gql`
+  query {
+  items {
+    ID,
+    Description,
+    Price,
+    Cost,
+    Quantity,
+    LastUpdated
+  }
+}
+`;
+
+
+export const GetAllItemsPaginatedQuery = (page, pageSize) => gql`
+  query{
+  itemsPaginated(cursor: null, limit: 10) {
+    items {ID,Description,Price,Cost,Quantity} ,
+    hasMore
+  }
+}
+`;
