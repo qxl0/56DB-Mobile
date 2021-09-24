@@ -33,10 +33,18 @@ export const AppTabs = ({}) => {
           fontWeight: "bold",
         },
       })}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray"
-      }}
+      // screenOptions={
+      //   {
+      //     "tabBarActiveTintColor": "tomato",
+      //     "tabBarInactiveTintColor": "gray",
+      //     "tabBarStyle": [
+      //       {
+      //         "display": "flex"
+      //       },
+      //       null
+      //     ]
+      //   }
+      // }
     >
       <Tabs.Screen name="Home" component={HomeStack} />
       <Tabs.Screen name="Sales" component={SalesStack} />

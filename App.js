@@ -6,17 +6,17 @@ import { Routes } from './components/Routes';
 
 
 const client= new ApolloClient({
-    // uri: 'http://74.109.5.248:4000/graphql'
-  uri: 'http://localhost:4000/graphql'
+    uri: 'http://74.109.5.248:4000/graphql'
+  // uri: 'http://localhost:4000/graphql'
 });
 
 
 export default function App() {
   return (
-    <AuthProvider>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
+      <AuthProvider>
         <Routes /> 
-      </ApolloProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ApolloProvider>
   )
 }

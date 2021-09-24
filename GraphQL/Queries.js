@@ -43,3 +43,4 @@ export const GetAllItemsPaginatedQuery = (page, pageSize) => gql`
   }
 }
 `;
+

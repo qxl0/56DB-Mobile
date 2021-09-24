@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { AuthContext } from "./AuthProvider";
 import  Center  from "./Center";
 import { Button, Text } from "react-native";
+import SignInScreen from "../screens/SignInScreen"
+import SignUpScreen from "../screens/SignUpScreen";
 
 
 const Stack = createStackNavigator();
@@ -56,14 +58,14 @@ export const AuthStack = ({}) => {
           headerTitle: "Sign In"
         }}
         name="Login"
-        component={Login}
+        component={SignInScreen}
       />
       <Stack.Screen
         options={{
           headerTitle: "Sign Up"
         }}
-        name="Register"
-        component={Register}
+        name="SignUpScreen"
+        component={SignUpScreen}
       />
     </Stack.Navigator>
   );
