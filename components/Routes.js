@@ -8,8 +8,9 @@ import { AuthStack } from './AuthStack';
 import { AppTabs } from './AppTabs';
 
 export const Routes = () => {
-  const { user, login } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true);
+  const { user, setUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const [userToken, setuserToken] = useState(null);
 
   useEffect(() => {
     // check if the user is logged in or not
@@ -17,7 +18,9 @@ export const Routes = () => {
       .then(userString => {
         if (userString) {
           // decode it
-          login();
+          // tempuser = JSON.parse(userString);
+          // login(tempuser)
+          setUser(userString);
         }
         setLoading(false);
       })
@@ -35,6 +38,7 @@ export const Routes = () => {
   }
   
 
+  console.log("user: ", user)
   return (
     <NavigationContainer>
       {user ? <AppTabs /> : <AuthStack />}

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IMS-Mobile",
-    "slug": "IMS-Mobile",
+    "name": "IMSMobile",
+    "slug": "IMSMobile",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/56dbmobile.png",
@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.qianglipa.IMS-Mobile",
+      "bundleIdentifier": "com.qianglipa.IMSMobile",
       "buildNumber": "1.1.0"
     },
     "android": {

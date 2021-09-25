@@ -13,7 +13,7 @@ export const AuthContext=React.createContext({
 
 
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState({username: "leo", password: ''});
+  const [user, setUser] = useState(null);
   const [calllogin, { data, loading, error }] = useMutation(LOGIN);
    const [callLogout, { logoutData, logoutLoading, logoutError }] = useMutation(LOGOUT);
   const [callRegister, { registerData, registerLoading, registerError }] = useMutation(REGISTER);
@@ -32,9 +32,15 @@ export default function AuthProvider({ children }) {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         login: async (user) => { 
+          if (!user.hasOwnProperty('password')){
+            setUser(null);
+            AsyncStorage.removeItem('user');
+            return;
+          }
           const {data, loading, error } = await calllogin({ 
-            variables: { password: user.password, 
+            variables: { password: user?.password, 
                          username: user.username 
                       }
               });
@@ -44,13 +50,14 @@ export default function AuthProvider({ children }) {
           }
           if (data) {
             console.log("data", data)
+            data.login.user.password = user.password;
             setUser(data.login.user);
             AsyncStorage.setItem('user', JSON.stringify(data.login.user));
           }
         },
-        logout: () => {
-           const {data, loading, error } = callLogout();
-
+        logout: async () =>  {
+          const {data, loading, error } = await callLogout();
+          console.log("logout, ", data)
           setUser(null);
           AsyncStorage.removeItem("user");
         },
