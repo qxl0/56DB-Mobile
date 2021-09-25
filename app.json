@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "56DB-Mobile",
-    "slug": "56DB-Mobile",
-    "version": "1.0.0",
+    "name": "IMSMobile",
+    "slug": "IMSMobile",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/56dbmobile.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,7 +17,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.qianglipa.IMSMobile",
+      "buildNumber": "1.1.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +29,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }
