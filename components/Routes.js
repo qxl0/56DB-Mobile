@@ -1,11 +1,15 @@
 import React, { useContext,useState, useEffect } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme} from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import { AuthContext } from './AuthProvider'
 import Center from './Center';
 import { AuthStack } from './AuthStack';
 import { AppTabs } from './AppTabs';
+import { DrawerContent} from '../screens/DrawerContent';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 export const Routes = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -40,8 +44,12 @@ export const Routes = () => {
 
   console.log("user: ", user)
   return (
-    <NavigationContainer>
-      {user ? <AppTabs /> : <AuthStack />}
+    <NavigationContainer >
+      {user ? 
+      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Screen name="HomeDrawer" component={AppTabs} />
+      </Drawer.Navigator>
+      : <AuthStack />}
     </NavigationContainer>
   );
 }

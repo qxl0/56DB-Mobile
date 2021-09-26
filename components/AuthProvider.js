@@ -8,7 +8,8 @@ export const AuthContext=React.createContext({
   user: {},
   login: () => {},
   logout: () => {},
-  register: () => {}
+  register: () => {},
+  toggleTheme: () => {},
 });
 
 
@@ -17,6 +18,7 @@ export default function AuthProvider({ children }) {
   const [calllogin, { data, loading, error }] = useMutation(LOGIN);
    const [callLogout, { logoutData, logoutLoading, logoutError }] = useMutation(LOGOUT);
   const [callRegister, { registerData, registerLoading, registerError }] = useMutation(REGISTER);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
   // { onCompleted({ login }) {
   //     console.log("completed calling login", login)
   //     if (login) {
@@ -80,7 +82,10 @@ export default function AuthProvider({ children }) {
             setUser(data.register.user);
             AsyncStorage.setItem('user', JSON.stringify(data.register.user));
           }
-        }
+        },
+        toggleTheme: () => {
+          setIsDarkTheme(isDarkTheme => !isDarkTheme);
+        },
       }}
     >
       {children}
