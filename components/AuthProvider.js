@@ -10,13 +10,14 @@ export const AuthContext=React.createContext({
   logout: () => {},
   register: () => {},
   toggleTheme: () => {},
+  isDarkTheme: false
 });
 
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [calllogin, { data, loading, error }] = useMutation(LOGIN);
-   const [callLogout, { logoutData, logoutLoading, logoutError }] = useMutation(LOGOUT);
+  const [callLogout, { logoutData, logoutLoading, logoutError }] = useMutation(LOGOUT);
   const [callRegister, { registerData, registerLoading, registerError }] = useMutation(REGISTER);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
   // { onCompleted({ login }) {
@@ -84,8 +85,11 @@ export default function AuthProvider({ children }) {
           }
         },
         toggleTheme: () => {
+          console.log("inside toggleTheme:", isDarkTheme)
+
           setIsDarkTheme(isDarkTheme => !isDarkTheme);
         },
+        isDarkTheme: isDarkTheme
       }}
     >
       {children}

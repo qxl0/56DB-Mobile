@@ -96,15 +96,17 @@ export function DrawerContent(props) {
       </DrawerContentScrollView>
       
       <Drawer.Section title="Preferences">
-                        <TouchableRipple onPress={() => {toggleTheme()}}>
-                            <View style={styles.preference}>
-                                <Text>Dark Theme</Text>
-                                <View pointerEvents="none">
-                                    <Switch value={paperTheme.dark}/>
-                                </View>
-                            </View>
-                        </TouchableRipple>
-                    </Drawer.Section>
+        <TouchableRipple onPress={() => {
+          console.log("pressed!")
+          toggleTheme()}}>
+            <View style={styles.preference}>
+                <Text>Dark Theme</Text>
+                <View pointerEvents="none">
+                    <Switch value={paperTheme.dark}/>
+                </View>
+            </View>
+        </TouchableRipple>
+      </Drawer.Section>
 
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
@@ -114,7 +116,7 @@ export function DrawerContent(props) {
             />
           )}
           label="Sign Out"
-          onPress={() => {}}
+          onPress={() => logout()}
         />
       </Drawer.Section>
     </View>

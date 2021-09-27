@@ -7,7 +7,7 @@ import { addProductRoutes } from "./addProductRoutes";
 import { useQuery} from '@apollo/react-hooks'
 import { GetAllItemsQuery } from "../GraphQL/Queries";
 import ItemCard from "./ItemCard";
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Stack = createStackNavigator();
 
@@ -52,7 +52,7 @@ function Feed({ navigation }){
   );
 }
 
-export const HomeStack = ({}) => {
+export const HomeStack = ({navigation}) => {
   const { logout } = useContext(AuthContext);
   return (
     <Stack.Navigator initialRouteName="Feed">
@@ -60,18 +60,19 @@ export const HomeStack = ({}) => {
       <Stack.Screen
         name="Feed"
         options={{
-          title: "My product list",
-          headerRight: () => {
-            return (
-              <TouchableOpacity
-                onPress={() => {
-                  logout();
-                }}
-              >
-                <Text>LOGOUT</Text>
-              </TouchableOpacity>
-            );
-          }
+           title: "",
+        
+          // headerRight: () => {
+          //   return (
+          //     <TouchableOpacity
+          //       onPress={() => {
+          //         logout();
+          //       }}
+          //     >
+          //       <Text>LOGOUT</Text>
+          //     </TouchableOpacity>
+          //   );
+          // }
         }}
         component={Feed}
       />

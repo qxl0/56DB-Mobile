@@ -4,10 +4,11 @@ import { FontAwesome,AntDesign, Ionicons, EvilIcons } from "@expo/vector-icons";
 import { HomeStack } from "./HomeStack";
 import { SearchStack } from "./SearchStack";
 import { SalesStack } from "./SalesStack";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tabs = createBottomTabNavigator();
 
-export const AppTabs = ({}) => {
+export const AppTabs = ({navigation}) => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -33,20 +34,14 @@ export const AppTabs = ({}) => {
           fontWeight: "bold",
         },
       })}
-      // screenOptions={
-      //   {
-      //     "tabBarActiveTintColor": "tomato",
-      //     "tabBarInactiveTintColor": "gray",
-      //     "tabBarStyle": [
-      //       {
-      //         "display": "flex"
-      //       },
-      //       null
-      //     ]
-      //   }
-      // }
     >
-      <Tabs.Screen name="Home" component={HomeStack} />
+      <Tabs.Screen name="Home" component={HomeStack} 
+        options={{ title:"Overview",
+        headerLeft: ()=>(
+          <Icon.Button name="ios-menu" size={25} backgroundColor="#009387"
+            onPress={()=>navigation.openDrawer()}></Icon.Button>
+        )}}
+         />
       <Tabs.Screen name="Sales" component={SalesStack} />
       <Tabs.Screen name="Search" component={SearchStack} />
     </Tabs.Navigator>
