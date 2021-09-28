@@ -14,38 +14,9 @@ import { AppTabs } from './AppTabs';
 import { DrawerContent} from '../screens/DrawerContent';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+
 const Drawer = createDrawerNavigator();
 
-const TestStack = createStackNavigator();
-const TestStackScreen = ({ navigation }) => {
-  return <TestStack.Navigator screenOptions={{
-    headerStyle: {
-      backgroundColor: '#009387',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    }
-  }}>
-    <TestStack.Screen name="test" component={testScreen} options={{title:'Overview'}} />
-    <TestStack.Screen name="test2" component={testScreen2} options={{title:'test2'}} />
-  </TestStack.Navigator>
-};
-const testScreen = ({ navigation }) => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-
-      <Text>testScreen</Text>
-    </View>
-  );
-};
-const testScreen2 = ({ navigation }) => {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>testScreen2</Text>
-    </View>
-  );
-};
 export const Routes = () => {
   const { user, setUser,isDarkTheme } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -58,7 +29,7 @@ export const Routes = () => {
       ...NavigationDefaultTheme.colors,
       ...PaperDefaultTheme.colors,
       background: '#ffffff',
-      text: '#333333'
+      text: '#000000',   
     } 
   }
 

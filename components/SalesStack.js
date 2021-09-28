@@ -7,7 +7,7 @@ import SalesDetailsScreen from '../screens/SalesDetailsScreen';
 const Stack = createStackNavigator();
 export const SalesStack = () => {
   return (
-    <Stack.Navigator initialRouteName="SalesScreen">
+    <Stack.Navigator initialRouteName="SalesScreen" screenOptions={{headerShown: false}}>
       <Stack.Screen name="Sales" component={SalesScreen} />
       <Stack.Screen name="SalesDetails" component={SalesDetailsScreen} />
     </Stack.Navigator>

@@ -3,15 +3,39 @@ import { Text,TouchableOpacity, View, StyleSheet } from 'react-native'
 import { useTheme } from 'react-native-paper';
 
 
-const ItemCard = ({title,price, onPress}) => {
+const ItemCard = ({title,price, onPress, style}) => {
   const { colors } = useTheme();
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <View style={styles.card}>
-        <Text style={[styles.text, { color: colors.text}]}>
+    <TouchableOpacity style={styles.container, style} onPress={onPress}>
+      <View style={
+          {
+            flex: 1,
+            alignItems: 'center',
+            width: '100%',
+            height: '100%',
+            backgroundColor: colors.background,
+            borderRadius: 10,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
+            elevation: 1,
+            marginBottom: 10,
+          }
+        }>
+        <Text style={[styles.text, 
+          {backgroundColor: colors.background, color: colors.text}]}>
           {title}
         </Text>
-        <Text style={styles.price}>
+        <Text style={
+          {
+            fontSize: 20,
+            textAlign: 'center',
+            margin: 10,
+            backgroundColor: colors.background,
+            color: colors.text,
+          }
+        }>
           ${price}
         </Text>
       </View>

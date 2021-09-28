@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, StyleSheet, Button, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button, SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useTheme } from "@react-navigation/native";
 
 export default function SalesScreen({ navigation }) {
+  const { colors, theme } = useTheme();
   const [mode, setMode] = useState('date');
   const [startDate, setStartDate] = useState(new Date("12/01/2018"));
   const [endDate, setEndDate] = useState(new Date("12/31/2018"));
@@ -19,7 +21,10 @@ export default function SalesScreen({ navigation }) {
     setEndDate(currentDate);
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container,
+      {backgroundColor: colors.background,
+      color: colors.text}]}>
+      <StatusBar barStyle= { theme?.dark ? "light-content" : "dark-content" }/>
        <DateTimePicker style={styles.startdate}
           testID="startdateTimePicker"
           value={startDate}

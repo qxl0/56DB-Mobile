@@ -7,7 +7,10 @@ import {
 } from "react-native";
 import { useQuery} from '@apollo/react-hooks';
 import { GetSalesQuery } from "../GraphQL/Queries";
+import { useTheme } from '@react-navigation/native'
+
 export default SalesDetailsScreen = ({ route, navigation }) => {
+  const { colors } = useTheme();
   const { startDate, endDate } = route.params;
 
   let s = new Date(startDate);
@@ -30,11 +33,13 @@ export default SalesDetailsScreen = ({ route, navigation }) => {
   }
   
   return (
-      <SafeAreaView style={styles.container}>
-        <Text style={styles.titleText}>Sales Details Screen</Text>
-        <Text style={styles.titleText}>Start Date: {ss}</Text>
-        <Text style={styles.titleText}>End Date: {ee}</Text>
-        <Text style={styles.titleText}>Sales: ${data.sales[0].SaleAmount} USD</Text>
+      <SafeAreaView style={[styles.container,
+        {backgroundColor: colors.background,
+        color: colors.text}]}>
+        <Text style={[styles.titleText,{color: colors.text}]}>Sales Details Screen</Text>
+        <Text style={[styles.titleText,{color: colors.text}]}>Start Date: {ss}</Text>
+        <Text style={[styles.titleText,{color: colors.text}]}>End Date: {ee}</Text>
+        <Text style={[styles.titleText,{color: colors.text}]}>Sales: ${data.sales[0].SaleAmount} USD</Text>
         <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
       </SafeAreaView>
   );

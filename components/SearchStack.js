@@ -6,18 +6,20 @@ import { useQuery } from "@apollo/react-hooks";
 import { addProductRoutes } from "./addProductRoutes";
 import { GetItemsQuery } from "../GraphQL/Queries";
 import ItemCard from  "./ItemCard";
+import { useTheme } from "@react-navigation/native"
 
 const Stack = createStackNavigator();
 
 function Search({ navigation, search }) {
+  const { colors } = useTheme();
   const [searchText, setSearchText] = useState("Abb");
   const [show, setShow] = useState(false);
   const  query = GetItemsQuery(searchText);
   const { data } = useQuery(query);
   console.log("data", data); 
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Type any character to search"
+    <View style={[styles.container, {backgroundColor: colors.background}]}>
+      <TextInput style={[styles.input, {color: colors.text}]} placeholder="Type any character to search"
           onChangeText={text=>{
             setShow(false);
             setSearchText(text)}
@@ -61,7 +63,7 @@ function Search({ navigation, search }) {
 
 export const SearchStack = ({}) => {
   return (
-    <Stack.Navigator initialRouteName="Search">
+    <Stack.Navigator initialRouteName="Search" screenOptions={{headerShown: false}}>
       <Stack.Screen name="Search" component={Search} options={{title: 
           ""}}/>
       {addProductRoutes(Stack)}

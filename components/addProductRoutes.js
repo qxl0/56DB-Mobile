@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { TouchableOpacity, Text, Button, StyleSheet } from "react-native";
+import { useTheme } from "@react-navigation/native"
 import  Center  from "./Center";
 
 export function Product({ route, navigation }) {
+  const { colors } = useTheme();
   console.log("route params:", route.params);
   return (
-    <Center style={styles.card}>
+    <Center style={[styles.card, { backgroundColor: colors.background}]}>
       <Text>{route.params.name}</Text>
       <Text>${route.params.price}</Text>
       <Text>${route.params.cost}</Text>

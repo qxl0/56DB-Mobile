@@ -16,9 +16,12 @@ import {LinearGradient} from 'expo-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { AuthContext } from '../components/AuthProvider';
+import { useTheme } from '@react-navigation/native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
 
 const SignUpScreen = ({navigation}) => {
-
+    const { colors } = useTheme();
     const [data, setData] = React.useState({
         username: '',
         email: '',
@@ -101,25 +104,28 @@ const SignUpScreen = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+          <StatusBar backgroundColor= "#009387" barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Register Now!</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
-            style={styles.footer}
+            style={[styles.footer, {backgroundColor: colors.background}]}
         >
             <ScrollView>
-            <Text style={styles.text_footer}>Username</Text>
+            <Text style={[styles.text_footer, {
+                backgroundColor: colors.background,
+                color: colors.text
+            }]}>Username</Text>
             <View style={styles.action}>
                 <FontAwesome 
                     name="user-o"
-                    color="#05375a"
+                    color={colors.text}
                     size={20}
                 />
                 <TextInput 
                     placeholder="Your Username"
-                    style={styles.textInput}
+                    style={[styles.textInput, { color: colors.text }]}
                     autoCapitalize="none"
                     onChangeText={(val) => textInputChange(val)}
                 />
@@ -129,7 +135,7 @@ const SignUpScreen = ({navigation}) => {
                 >
                     <Feather 
                         name="check-circle"
-                        color="green"
+                        color={colors.text}
                         size={20}
                     />
                 </Animatable.View>
@@ -137,17 +143,19 @@ const SignUpScreen = ({navigation}) => {
             </View>
 
             <Text style={[styles.text_footer, {
+                backgroundColor: colors.background,
+                color: colors.text,
                 marginTop: 35
             }]}>Email Address</Text>
             <View style={styles.action}>
                 <FontAwesome 
                     name="user-o"
-                    color="#05375a"
+                    color={colors.text}
                     size={20}
                 />
                 <TextInput 
                     placeholder="Your email address"
-                    style={styles.textInput}
+                    style={[styles.textInput, { color: colors.text }]}
                     autoCapitalize="none"
                     onChangeText={(val) => textEmailInputChange(val)}
                 />
@@ -157,7 +165,7 @@ const SignUpScreen = ({navigation}) => {
                 >
                     <Feather 
                         name="check-circle"
-                        color="green"
+                        color={colors.text}
                         size={20}
                     />
                 </Animatable.View>
@@ -165,18 +173,19 @@ const SignUpScreen = ({navigation}) => {
             </View>
 
             <Text style={[styles.text_footer, {
+                color: colors.text,
                 marginTop: 35
             }]}>Password</Text>
             <View style={styles.action}>
                 <Feather 
                     name="lock"
-                    color="#05375a"
+                    color={colors.text}
                     size={20}
                 />
                 <TextInput 
                     placeholder="Your Password"
                     secureTextEntry={data.secureTextEntry ? true : false}
-                    style={styles.textInput}
+                    style={[styles.textInput, { color: colors.text }]}
                     autoCapitalize="none"
                     onChangeText={(val) => handlePasswordChange(val)}
                 />
@@ -186,13 +195,13 @@ const SignUpScreen = ({navigation}) => {
                     {data.secureTextEntry ? 
                     <Feather 
                         name="eye-off"
-                        color="grey"
+                        color={colors.text}
                         size={20}
                     />
                     :
                     <Feather 
                         name="eye"
-                        color="grey"
+                        color={colors.text}
                         size={20}
                     />
                     }
@@ -200,18 +209,19 @@ const SignUpScreen = ({navigation}) => {
             </View>
 
             <Text style={[styles.text_footer, {
+                color: colors.text,
                 marginTop: 35
             }]}>Confirm Password</Text>
             <View style={styles.action}>
                 <Feather 
                     name="lock"
-                    color="#05375a"
+                    color={colors.text}
                     size={20}
                 />
                 <TextInput 
                     placeholder="Confirm Your Password"
                     secureTextEntry={data.confirm_secureTextEntry ? true : false}
-                    style={styles.textInput}
+                    style={[styles.textInput, {color: colors.text}]}
                     autoCapitalize="none"
                     onChangeText={(val) => handleConfirmPasswordChange(val)}
                 />
